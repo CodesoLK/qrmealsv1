@@ -31,6 +31,11 @@ Route::get('/selectedpaymentt/{order}/{payment}', 'PaymentController@selectedPay
 Route::group(['middleware' => ['auth','impersonate']], function () {
     Route::get('/home/{lang?}', 'HomeController@index')->name('home')->middleware(['isOwnerOnPro','verifiedSetup']);
 
+    // Flyer Template Part
+    Route::resource('/flyer', FlyerController::class);
+    Route::resource('/menu-designer', UserFlyerController::class);
+
+
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::post('/user/push', 'UserController@checkPushNotificationId');
 
